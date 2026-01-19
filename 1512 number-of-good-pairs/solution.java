@@ -3,11 +3,8 @@ class Solution {
         int arr[] = new int[101];
         for(int num:nums) arr[num]++;
         int sum=0;
-        for(int value:arr) {
-            if(value>1){
-                int v=(value*(value-1))/2;
-                sum+=v;
-            }
+        for(int i:arr){
+            if(i>1) sum+=(i*(i-1))/2;
         }
         return sum;
     }
