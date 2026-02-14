@@ -3,9 +3,9 @@ class Solution {
        String sr=s.toLowerCase();
        char arr[]=sr.toCharArray();
        int l=0,r=s.length()-1;
-       while(l<r){
+       while(l<=r) {
         while(l<r && !isChar(arr[l])) l++;
-        while(l<r && !isChar(arr[r])) r--;
+        while(r>l && !isChar(arr[r])) r--;
         if(arr[l]!=arr[r]) return false;
         l++;
         r--;
