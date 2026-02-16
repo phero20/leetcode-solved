@@ -1,13 +1,11 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 
 
-
-
-select id as id,count(*) as num from
+select id,count(*) as num from
 (
 select requester_id as id from RequestAccepted union all 
-select accepter_id id from RequestAccepted
-) as allData
+select accepter_id as id from RequestAccepted
+)
 group by id
 order by num desc
 LIMIT 1;
