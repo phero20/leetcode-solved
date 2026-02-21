@@ -11,17 +11,16 @@ class Solution {
         end=n-1;
        }
 
-       for(int i=start;i<=end;i++) {
-        sum+=code[i%n];
-       }
-        int ans[]=new int[n];
-        for(int i=0;i<n;i++) {
-            ans[i]=sum;
+       for(int i=start;i<=end;i++) sum+=code[i%n];
 
-            sum-=code[start%n];
-            start++;
-            end++;
-            sum+=code[end%n];
+       int ans[]=new int[n];
+       for(int i=0;i<n;i++) {
+         ans[i]=sum;
+
+         sum-=code[start%n];
+         start++;
+         end++;
+         sum+=code[end%n];
         }
         return ans;
     }
