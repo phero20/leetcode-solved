@@ -1,12 +1,4 @@
-# Write your MySQL query statement below
-
-
-
-
-
-
-
-
+-- Write your PostgreSQL query statement below
 SELECT 
     s.student_id,
     s.student_name,
