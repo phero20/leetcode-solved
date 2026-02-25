@@ -4,13 +4,12 @@ function timeLimit(fn: Fn, t: number): Fn {
     
     return async function(...args) {
         return new Promise((resolve,reject)=>{
-             const timer = setTimeout(() => reject("Time Limit Exceeded"), t);
+             const timer = setTimeout(()=>reject("Time Limit Exceeded"),t)
              Promise.resolve(fn(...args))
-             .then((res)=>{
-                clearTimeout(timer)
+             .then(res=>{
+                clearTimeout(timer);
                 resolve(res)
-             })
-             .catch((err)=>{
+             }).catch(err=>{
                 clearTimeout(timer)
                 reject(err)
              })
