@@ -1,7 +1,7 @@
 type F = (...args: number[]) => void
 
 function debounce(fn: F, t: number): F {
-   let p = null
+    let p=null
     return function(...args) {
         clearTimeout(p)
         p=setTimeout(()=>{fn(...args)},t)
