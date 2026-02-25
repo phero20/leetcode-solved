@@ -1,13 +1,17 @@
 type Fn = (...params: number[]) => number
 
 function memoize(fn: Fn): Fn {
-    let cache = {}
-    return function(...args) {
-        const key = JSON.stringify(args);
-        if(key in cache) return cache[key];
-        let res = fn(...args)
-        cache[key]=res;
-        return res;
+    const cache = new Map();
+    return function (...args) {
+        let key:string = JSON.stringify(args);
+
+        if(cache.has(key)){
+            return cache.get(key)
+        }
+
+        let result = fn(...args);
+        cache.set(key, result);
+        return result
     }
 }
 
@@ -22,3 +26,4 @@ function memoize(fn: Fn): Fn {
  * memoizedFn(2, 3) // 5
  * console.log(callCount) // 1 
  */
+
