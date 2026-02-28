@@ -1,10 +1,10 @@
 class Solution {
-    public int maxProfit(int[] prices) {
-    int gap=0,l=prices[0];  
-    for(int r=1;r<prices.length;r++) {
-        if(prices[r]<l) l=prices[r];
-        gap=Math.max(gap,prices[r]-l);
-    }
-    return gap;
+    public int maxProfit(int[] p) {
+        int l = Integer.MAX_VALUE, max = 0;
+        for (int r : p) {
+            if (r < l) l = r;
+            else max = Math.max(max, r - l);
+        }
+        return max;
     }
 }
