@@ -1,19 +1,12 @@
 class Solution {
     public boolean isPalindrome(String s) {
-       String sr=s.toLowerCase();
-       char arr[]=sr.toCharArray();
-       int l=0,r=s.length()-1;
-       while(l<=r) {
-        while(l<r && !isChar(arr[l])) l++;
-        while(r>l && !isChar(arr[r])) r--;
-        if(arr[l]!=arr[r]) return false;
-        l++;
-        r--;
-       }
-       return true;
-    }
-    private boolean isChar(char c){
-        if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) return true;
-        return false;
+        int l = 0, r = s.length() - 1;
+        while (l < r) {
+            if (!Character.isLetterOrDigit(s.charAt(l))) l++;
+            else if (!Character.isLetterOrDigit(s.charAt(r))) r--;
+            else if (Character.toLowerCase(s.charAt(l)) != Character.toLowerCase(s.charAt(r))) return false;
+            else { l++; r--; }
+        }
+        return true;
     }
 }
