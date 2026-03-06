@@ -1,25 +1,37 @@
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
-        List<Integer> l = new ArrayList<>();
-        int count1=0,count2=0;
-        int e1=0,e2=0;
-        for(int i=0;i<nums.length;i++){
-            int num=nums[i];
-            if(e1==num) count1++;
-            else if(e2==num ) count2++;
-            else if(count1==0){e1=num;count1++;}
-            else if(count2==0){e2=num;count2++;}
-            else{count1--;count2--;}
-        }
-        count1=0;count2=0;
-        for(int i=0;i<nums.length;i++){
-            int num=nums[i];
-            if(num==e1) count1++;
-            else if(num==e2) count2++;
-        }  
-        if(count1>nums.length/3) l.add(e1);
-        if(count2>nums.length/3) l.add(e2);
-        return l;
+        List<Integer> ans = new ArrayList<>();
+        int candidate1 = 0, candidate2 = 0;
+        int count1 = 0, count2 = 0;
 
+        for (int num : nums) {
+            if (num == candidate1) {
+                count1++;
+            } else if (num == candidate2) {
+                count2++;
+            } else if (count1 == 0) {
+                candidate1 = num;
+                count1 = 1;
+            } else if (count2 == 0) {
+                candidate2 = num;
+                count2 = 1;
+            } else {
+                count1--;
+                count2--;
+            }
+        }
+
+        count1 = 0;
+        count2 = 0;
+        for (int num : nums) {
+            if (num == candidate1) count1++;
+            else if (num == candidate2) count2++;
+        }
+
+        int threshold = nums.length / 3;
+        if (count1 > threshold) ans.add(candidate1);
+        if (count2 > threshold) ans.add(candidate2);
+
+        return ans;
     }
 }
