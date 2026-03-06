@@ -1,28 +1,19 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        int n=nums.length-1;
-        mergeSort(nums,0,n);
-        return nums;
-    }
-    private void mergeSort(int[] nums,int left,int right) {
-        if(left>=right) return;
-        int mid=left+(right-left)/2;
-        mergeSort(nums,left,mid);
-        mergeSort(nums,mid+1,right);
-        merge(nums,left,mid,right);
-    }
-    private void merge(int[] nums,int left,int mid,int right) {
-        int i=left,j=mid+1,k=0;
-        int res[] = new int[right-left+1];
-        while(i<=mid && j<=right) {
-            if(nums[i]<=nums[j]) res[k++]=nums[i++];
-            else res[k++]=nums[j++];
+        int max = -50000;
+        int min = 50000;
+        for (int i : nums) {
+            if(i>max) max=i;
+            if(i<min) min=i;
         }
-       while (i <= mid) res[k++] = nums[i++];
-        while (j <= right) res[k++] = nums[j++];
-        for (int t = 0; t < res.length; t++) {
-            nums[left + t] = res[t];
+        int[] count = new int[max-min+2];
+        for(int i:nums) count[i-min]++;
+        int[] res = new int[nums.length];
+        int idx=0;
+        for(int i=0;i<count.length;i++) {
+            for(int j=0;j<count[i];j++) 
+                res[idx++]=i+min;
         }
-
+        return res;
     }
 }
