@@ -1,9 +1,9 @@
 public class Solution {
     public int RemoveDuplicates(int[] nums) {
-        int i=0;
-        for(int j=0;j<nums.Length;j++) {
-            if(nums[i]!=nums[j]) nums[++i]=nums[j];
+        int j=0;
+        for(int i=1;i<nums.Length;i++) {
+            if(nums[i]!=nums[j]) nums[++j]=nums[i];
         }
-        return i+1;
+        return j+1;
     }
 }
