@@ -1,29 +1,25 @@
 class FreqStack {
-    private Map<Integer,Integer> freq;
-    private Map<Integer,List<Integer>> stac;
-    private int maxFreq;
+    private Map<Integer, Integer> freq;
+    private Map<Integer,Deque<Integer>> grp;
+    int m;
+
     public FreqStack() {
         freq = new HashMap<>();
-        stac= new HashMap<>();
-        maxFreq=0;
+        grp = new HashMap<>();
+        m = 0;
     }
 
     public void push(int val) {
         freq.put(val,freq.getOrDefault(val,0)+1);
-        int fr=freq.get(val);
-        List<Integer> st = stac.getOrDefault(fr,new ArrayList<>());
-        st.add(val);
-        stac.put(fr,st);
-        maxFreq=Math.max(maxFreq,fr);
+        int f = freq.get(val);
+        grp.computeIfAbsent(f, k -> new ArrayDeque<>()).push(val);
+        m=Math.max(m,f);
     }
-    
+
     public int pop() {
-        List<Integer> st = stac.get(maxFreq);
-        int val=st.remove(st.size()-1);
+        int val = grp.get(m).pop();
         freq.put(val,freq.get(val)-1);
-        if(st.size()==0) {
-            maxFreq--;
-        }
+        if(grp.get(m).isEmpty()) m--;
         return val;
     }
 }
