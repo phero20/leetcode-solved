@@ -1,16 +1,17 @@
 class Solution {
     public int characterReplacement(String s, int k) {
-        int l=0,mxl=0,mxf=0;
-        int c[]=new int[126];
+        int l=0,maxf=0,maxl=0;
+        int[] map = new int[126];
         for(int r=0;r<s.length();r++) {
-            c[s.charAt(r)]++;
-            mxf=Math.max(mxf,c[s.charAt(r)]);
-            while((r-l+1)-mxf > k) {
-                c[s.charAt(l)]--;
+            char c = s.charAt(r);
+            map[c]++;
+            maxf=Math.max(maxf,map[c]);
+            while((r-l+1) - maxf > k ) {
+                map[s.charAt(l)]--;
                 l++;
             }
-            mxl=Math.max(mxl,r-l+1);
+            maxl=Math.max(r-l+1,maxl);
         }
-        return mxl;
+        return maxl;
     }
 }
