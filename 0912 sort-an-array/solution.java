@@ -1,19 +1,21 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        int max = -50000;
-        int min = 50000;
-        for (int i : nums) {
-            if(i>max) max=i;
-            if(i<min) min=i;
+        int max = Integer.MIN_VALUE,min = Integer.MAX_VALUE;
+        for(int i:nums) {
+            max=Math.max(max,i);
+            min = Math.min(min,i);
         }
-        int[] count = new int[max-min+2];
-        for(int i:nums) count[i-min]++;
-        int[] res = new int[nums.length];
-        int idx=0;
-        for(int i=0;i<count.length;i++) {
-            for(int j=0;j<count[i];j++) 
-                res[idx++]=i+min;
+        int offset = -min;
+        int[] arr = new int[max - min + 1];
+        for(int i:nums) arr[i + offset]++;
+        int[] ans = new int[nums.length];
+        int k =0;
+        for(int i=0;i<arr.length;i++) {
+            while(arr[i] > 0 ) {
+                ans[k++] = i - offset;
+                arr[i]--;
+            }  
         }
-        return res;
+        return ans;
     }
 }
