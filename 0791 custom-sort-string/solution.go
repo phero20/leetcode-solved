@@ -1,22 +1,20 @@
 func customSortString(order string, s string) string {
-    var arr [26]int
-    var sb strings.Builder
-    for _,ch:=range s {
-        if(ch>='a' && ch<='z') {
-            arr[ch-'a']++
+    fr:=make([]int,26)
+    for _,v:=range s {
+        fr[v-'a']++
+    }
+    ans:=""
+    for _,v := range order {
+        for fr[v-'a'] > 0 {
+            ans+=string(v)
+            fr[v-'a']--
         }
     }
-    for _,ch:=range order{
-        for arr[ch-'a']>0  {
-            sb.WriteString(string(ch))
-            arr[ch-'a']--
+    for _,v := range s {
+        if fr[v-'a'] > 0 {
+            ans+=string(v)
+            fr[v-'a']--
         }
     }
-    for index,num:=range arr{
-        for num > 0  {
-            sb.WriteString(string('a'+rune(index)))
-            num--
-        }
-    }
-    return sb.String()
+    return ans
 }
