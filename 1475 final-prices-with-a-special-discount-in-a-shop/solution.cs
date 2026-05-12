@@ -1,13 +1,15 @@
 public class Solution {
     public int[] FinalPrices(int[] prices) {
-       Stack<int> st = new();
-        int[] res = (int[])prices.Clone();
-        for(int i=0;i<prices.Length;i++) {
-            while(st.Count > 0 && prices[st.Peek()]>=prices[i]) {
-                res[st.Pop()]-=prices[i];
+        int[] st = new int[prices.Length];
+        int top = 0,idx=0;
+        int[] ans = new int[prices.Length];
+        for(int i=1;i<prices.Length;i++) {
+            while(top!=-1 && prices[st[top]] >= prices[i]) {
+                ans[st[top]] = prices[st[top--]] - prices[i]; 
             }
-            st.Push(i);
+            st[++top] = i;
         }
-        return res;
+        for(int i=0;i<=top;i++) ans[st[i]] = prices[st[i]];
+        return ans;
     }
 }
