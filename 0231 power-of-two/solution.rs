@@ -1,8 +1,11 @@
 impl Solution {
     pub fn is_power_of_two(n: i32) -> bool {
-        if n<=0 {
-            return false;
+        if n==1 {
+            return true
         }
-        n&(n-1)==0
+        if n==0 || n%2!=0 {
+            return false
+        }
+        return Self::is_power_of_two(n/2)
     }
 }
