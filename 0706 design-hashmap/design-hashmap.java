@@ -11,7 +11,7 @@ class MyHashMap {
     int mod = 769;
     Node[] map;
     public MyHashMap() {
-        map = new Node[769];
+        map = new Node[mod];
     }
     public int hash(int key) {
         return key%mod;
