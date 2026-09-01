@@ -12,14 +12,13 @@ class Solution {
             ans.add(new ArrayList<>(arr));
             return;
         }
-        if(i==nums.length) return;
-        if(!u[i]) {
-            arr.add(nums[i]);
-            u[i] = true;
-            bt(nums,0,arr,u);
+        for(int j=0;j<nums.length;j++) {
+            if(u[j]) continue;
+            arr.add(nums[j]);
+            u[j] = true;
+            bt(nums,j,arr,u);
             arr.remove(arr.size()-1);
-            u[i] = false;
+            u[j] = false;
         }
-        bt(nums,i+1,arr,u);
     }
 }
