@@ -12,12 +12,14 @@ class Solution {
             ans.add(new ArrayList<>(arr));
             return;
         }
-        for(int j=i;j<nums.length;j++) {
-            if(j>i && nums[j]==nums[j-1]) continue;
-            if(nums[j] > target) break;
-            arr.add(nums[j]);
-            bt(nums,j+1,target-nums[j],arr);
-            arr.remove(arr.size()-1);
-        }
+        if(target < 0 || i==nums.length) return;
+
+        arr.add(nums[i]);
+        bt(nums,i+1,target-nums[i],arr);
+        arr.remove(arr.size()-1);
+
+        int nxt = i;
+        while(nxt < nums.length && nums[nxt]==nums[i]) nxt++;
+        bt(nums,nxt,target,arr);
     }
 }
