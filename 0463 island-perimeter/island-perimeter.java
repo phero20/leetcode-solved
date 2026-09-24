@@ -22,7 +22,7 @@ class Solution {
         if(visited[r][c]) {
             return 0;
         }
-        
+
         visited[r][c] = true;
         int p = 4;
 
@@ -36,5 +36,6 @@ class Solution {
         p += dfs(grid,r,c-1);
         p += dfs(grid,r,c+1);
         return p;
+        
     }
 }
