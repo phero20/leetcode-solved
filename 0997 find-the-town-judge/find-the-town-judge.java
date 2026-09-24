@@ -1,14 +1,15 @@
 class Solution {
     public int findJudge(int n, int[][] trust) {
-        int[] c = new int[n+1];
-        boolean[] v = new boolean[n+1];
+        int[] in = new int[n+1];
+        int[] out = new int[n+1];
         for(int i[] : trust) {
-            c[i[1]]++;
-            v[i[0]] = true;
+            in[i[1]]++;
+            out[i[0]]++;
         }
+
         for(int i=1;i<=n;i++) {
-            if(c[i] == n-1) {
-                if(!v[i]) return i;
+            if(out[i] == 0 && in[i] == n-1) {
+                return i;
             }
         }
         return -1;
