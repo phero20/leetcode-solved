@@ -1,5 +1,4 @@
 class Solution {
-
     List<List<Integer>> ans;
     public List<List<Integer>> combine(int n, int k) {
         ans = new ArrayList<>();
@@ -8,14 +7,14 @@ class Solution {
     }
 
     private void bt(int n,int i,int k,List<Integer> arr) {
-        if(arr.size()==k) {
+        if(arr.size() == k) {
             ans.add(new ArrayList<>(arr));
             return;
         }
-        if(i==n+1) return;
-        arr.add(i);
-        bt(n,i+1,k,arr);
-        arr.remove(arr.size()-1);
-        bt(n,i+1,k,arr);
+        for(int j=i;j<=n;j++) {
+            arr.add(j);
+            bt(n,j+1,k,arr);
+            arr.remove(arr.size()-1);
+        } 
     }
 }
